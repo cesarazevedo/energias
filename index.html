@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apostila Virtual da disciplina Informática Aplicada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            color: #4a5568;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .author-info {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #20b2aa;
+            margin-top: 30px;
+        }
+
+        .author-info h3 {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .author-info p {
+            font-size: 1.2em;
+            color: #2d3748;
+        }
+
+        .bimestre-section {
+            margin-bottom: 60px;
+        }
+
+        .bimestre-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .bimestre-header h2 {
+            font-size: 2.5em;
+            color: #4a5568;
+            margin-bottom: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Calendário do Bimestre */
+        .calendar-info {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f3e5f5 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .calendar-header h4 {
+            color: #4a5568;
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 0.95em;
+            color: #2d3748;
+        }
+
+        .date-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .date-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(3px);
+        }
+
+        .date-icon {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .chapter-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .chapter-title {
+            font-size: 1.8em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .chapter-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .chapter-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .topic-tag {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .chapter-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .status-available {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .chapter-icon {
+            font-size: 1.2em;
+        }
+
+        .coming-soon-message {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px dashed #667eea;
+        }
+
+        .coming-soon-message p {
+            font-size: 1.3em;
+            color: #667eea;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .footer h3 {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .progress-info {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #ff7f50;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .chapters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+
+            .calendar-dates {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Bimestre 3 - tom alaranjado */
+        .chapter-card.bimestre3 .chapter-number {
+            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+        }
+
+        .chapter-card.bimestre3::before {
+            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+        }
+
+        /* Bimestre 4 - tom rosado */
+        .chapter-card.bimestre4 .chapter-number {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+        }
+
+        .chapter-card.bimestre4::before {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+        }
+
+        .home-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            z-index: 1001;
+        }
+
+        .home-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Calendários específicos por bimestre */
+        .bimestre-section:nth-child(3) .calendar-info {
+            border-left-color: #f7971e;
+            background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+        }
+
+        .bimestre-section:nth-child(4) .calendar-info {
+            border-left-color: #ff758c;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>💻 Informática Aplicada</h1>
+            <p class="subtitle">Apostila Virtual</p>
+            
+            <div class="progress-info">
+                <h3>📊 Progresso Geral da Apostila</h3>
+                <p>Disciplina em desenvolvimento - Conteúdo sendo adicionado</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p><strong>Início: 3º e 4º bimestres</strong></p>
+            </div>
+
+            <div class="author-info">
+                <h3>👨‍🏫 Professor</h3>
+                <p><strong>Nome do Professor</strong><br>
+                📧 professor@escola.edu.br<br></p>
+            </div>
+        </div>
+
+        <!-- 3º BIMESTRE -->
+        <div class="bimestre-section">
+            <div class="bimestre-header">
+                <h2>📚 3º BIMESTRE</h2>
+                
+                <!-- Calendário do 3º Bimestre -->
+                <div class="calendar-info">
+                    <div class="calendar-header">
+                        <span>📅</span>
+                        <h4>Calendário 2025.2</h4>
+                    </div>
+                    <div class="calendar-dates">
+                        <div class="date-item">
+                            <span class="date-icon">🎯</span>
+                            <span><strong>Início:</strong> 09/09/2025</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-icon">✅</span>
+                            <span><strong>Término:</strong> 12/11/2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chapters-grid">
+                <!-- Capítulo 1 - Sistemas Operacionais -->
+                <a href="sistemas_operacionais_presentation.html" class="chapter-card bimestre3">
+                    <div class="chapter-number">1</div>
+                    <h2 class="chapter-title">🖥️ Sistemas Operacionais</h2>
+                    <p class="chapter-description">
+                        Compreenda o software que gerencia seu computador: Windows, Linux e macOS. 
+                        Aprenda sobre interface, gerenciamento de arquivos e configurações básicas.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Windows</span>
+                        <span class="topic-tag">Linux</span>
+                        <span class="topic-tag">macOS</span>
+                        <span class="topic-tag">Interface Gráfica</span>
+                        <span class="topic-tag">Gerenciamento de Arquivos</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-available">✅ Disponível</span>
+                        <span class="chapter-icon">🖥️</span>
+                    </div>
+                </a>
+
+                <!-- Espaço para futuros capítulos -->
+                <div class="coming-soon-message">
+                    <p>📝 Mais capítulos serão adicionados em breve...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4º BIMESTRE -->
+        <div class="bimestre-section">
+            <div class="bimestre-header">
+                <h2>📚 4º BIMESTRE</h2>
+                
+                <!-- Calendário do 4º Bimestre -->
+                <div class="calendar-info">
+                    <div class="calendar-header">
+                        <span>📅</span>
+                        <h4>Calendário 2025.2</h4>
+                    </div>
+                    <div class="calendar-dates">
+                        <div class="date-item">
+                            <span class="date-icon">🎯</span>
+                            <span><strong>Início:</strong> 13/11/2025</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-icon">✅</span>
+                            <span><strong>Término:</strong> 10/02/2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chapters-grid">
+                <!-- Capítulo 1 - Aplicativos de Escritório -->
+                <a href="aplicativos_escritorio_presentation.html" class="chapter-card bimestre4">
+                    <div class="chapter-number">1</div>
+                    <h2 class="chapter-title">📄 Aplicativos de Escritório</h2>
+                    <p class="chapter-description">
+                        Domine as ferramentas essenciais para produtividade: Microsoft Office e Google Workspace. 
+                        Word, Excel, PowerPoint e suas alternativas gratuitas.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Microsoft Word</span>
+                        <span class="topic-tag">Excel</span>
+                        <span class="topic-tag">PowerPoint</span>
+                        <span class="topic-tag">Google Docs</span>
+                        <span class="topic-tag">LibreOffice</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-available">✅ Disponível</span>
+                        <span class="chapter-icon">📄</span>
+                    </div>
+                </a>
+
+                <!-- Espaço para futuros capítulos -->
+                <div class="coming-soon-message">
+                    <p>📝 Mais capítulos serão adicionados em breve...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>💡 Sobre esta Apostila</h3>
+            <p>Material didático interativo desenvolvido para facilitar o aprendizado em Informática Aplicada</p>
+            <p>Conteúdo sendo desenvolvido gradualmente - Acompanhe as atualizações!</p>
+        </div>
+    </div>
+
+    <script>
+        // Adicionar efeitos de hover e interatividade
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.chapter-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Efeito de digitação no título
+            const title = document.querySelector('.header h1');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeEffect = setInterval(() => {
+                title.textContent += originalText.charAt(i);
+                i++;
+                if (i > originalText.length - 1) {
+                    clearInterval(typeEffect);
+                }
+            }, 100);
+
+            // Animação da barra de progresso (início da disciplina)
+            setTimeout(() => {
+                document.querySelector('.progress-fill').style.width = '10%';
+            }, 1000);
+
+            // Animação suave para os calendários
+            const calendars = document.querySelectorAll('.calendar-info');
+            calendars.forEach((calendar, index) => {
+                setTimeout(() => {
+                    calendar.style.opacity = '0';
+                    calendar.style.transform = 'translateY(20px)';
+                    calendar.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        calendar.style.opacity = '1';
+                        calendar.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+
+            // Efeito especial para as mensagens "Coming Soon"
+            const comingSoonMessages = document.querySelectorAll('.coming-soon-message');
+            comingSoonMessages.forEach(message => {
+                message.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.borderColor = '#f7971e';
+                });
+                
+                message.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.borderColor = '#667eea';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
