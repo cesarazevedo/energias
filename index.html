@@ -472,6 +472,7 @@
                 </a>
 
                 <!-- Capítulo 2 - Primeiros Passos com Python -->
+                <a href="primeiros-passos-python-aula.html" class="chapter-card bimestre3">
                 <div class="chapter-card bimestre3">
                     <div class="chapter-number">2</div>
                     <h2 class="chapter-title">🐍 Primeiros Passos com Python</h2>
@@ -785,85 +786,25 @@
     </div>
 
     <script>
-        // Adicionar efeitos de hover e interatividade
+        // JAVASCRIPT DESABILITADO TEMPORARIAMENTE PARA RESOLVER PROBLEMA DO CARD 2
+        console.log("JavaScript simplificado - apenas essenciais");
+        
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.chapter-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Efeito de digitação no título
+            // Efeito de digitação no título (seguro)
             const title = document.querySelector('.header h1');
-            const originalText = title.textContent;
-            title.textContent = '';
-            
-            let i = 0;
-            const typeEffect = setInterval(() => {
-                title.textContent += originalText.charAt(i);
-                i++;
-                if (i > originalText.length - 1) {
-                    clearInterval(typeEffect);
-                }
-            }, 100);
-
-            // Animação da barra de progresso (curso estruturado)
-            setTimeout(() => {
-                document.querySelector('.progress-fill').style.width = '100%';
-            }, 1000);
-
-            // Animação suave para os calendários
-            const calendars = document.querySelectorAll('.calendar-info');
-            calendars.forEach((calendar, index) => {
-                setTimeout(() => {
-                    calendar.style.opacity = '0';
-                    calendar.style.transform = 'translateY(20px)';
-                    calendar.style.transition = 'all 0.6s ease';
-                    
-                    setTimeout(() => {
-                        calendar.style.opacity = '1';
-                        calendar.style.transform = 'translateY(0)';
-                    }, 100);
-                }, index * 200);
-            });
-
-            // Animação dos cards por bimestre
-            setTimeout(() => {
-                const bimestre3Cards = document.querySelectorAll('.bimestre3');
-                const bimestre4Cards = document.querySelectorAll('.bimestre4');
+            if (title) {
+                const originalText = title.textContent;
+                title.textContent = '';
                 
-                bimestre3Cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(30px)';
-                        card.style.transition = 'all 0.5s ease';
-                        
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, index * 100);
-                });
-
-                bimestre4Cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(30px)';
-                        card.style.transition = 'all 0.5s ease';
-                        
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, (index * 100) + 1000);
-                });
-            }, 500);
+                let i = 0;
+                const typeEffect = setInterval(() => {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    if (i > originalText.length - 1) {
+                        clearInterval(typeEffect);
+                    }
+                }, 100);
+            }
         });
     </script>
 </body>
