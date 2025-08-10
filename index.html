@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -241,24 +240,13 @@
             color: #22543d;
         }
 
+        .status-coming-soon {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
         .chapter-icon {
             font-size: 1.2em;
-        }
-
-        .coming-soon-message {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 20px 0;
-            border: 2px dashed #667eea;
-        }
-
-        .coming-soon-message p {
-            font-size: 1.3em;
-            color: #667eea;
-            margin: 0;
-            font-weight: 500;
         }
 
         .footer {
@@ -304,6 +292,40 @@
             transition: width 0.3s ease;
         }
 
+        .course-info {
+            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #38b2ac;
+            margin: 30px 0;
+        }
+
+        .course-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #38b2ac;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #4a5568;
+            margin-top: 5px;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.5em;
@@ -319,6 +341,10 @@
 
             .calendar-dates {
                 grid-template-columns: 1fr;
+            }
+
+            .course-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -340,32 +366,6 @@
             background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
         }
 
-        .home-btn {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 20px;
-            font-size: 1em;
-            font-weight: bold;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-            z-index: 1001;
-        }
-
-        .home-btn:hover {
-            background: #5a67d8;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.4);
-        }
-
         /* Calendários específicos por bimestre */
         .bimestre-section:nth-child(3) .calendar-info {
             border-left-color: #f7971e;
@@ -383,21 +383,44 @@
     <div class="container">
         <div class="header">
             <h1>💻 Informática Aplicada</h1>
-            <p class="subtitle">Apostila Virtual</p>
+            <p class="subtitle">Iniciação à Programação com Python</p>
             
             <div class="progress-info">
-                <h3>📊 Progresso Geral da Apostila</h3>
-                <p>Disciplina em desenvolvimento - Conteúdo sendo adicionado</p>
+                <h3>📊 Estrutura do Curso</h3>
+                <p>14 capítulos distribuídos em 2 bimestres - 80 aulas totais</p>
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-                <p><strong>Início: 3º e 4º bimestres</strong></p>
+                <p><strong>Curso completo de Python para iniciantes</strong></p>
+            </div>
+
+            <div class="course-info">
+                <h3>🎯 Informações do Curso</h3>
+                <div class="course-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">80</div>
+                        <div class="stat-label">Aulas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">Semanas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Aulas/Semana</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Capítulos</div>
+                    </div>
+                </div>
             </div>
 
             <div class="author-info">
                 <h3>👨‍🏫 Professor</h3>
                 <p><strong>Nome do Professor</strong><br>
-                📧 professor@escola.edu.br<br></p>
+                📧 professor@escola.edu.br<br>
+                🐍 Especialista em Python e Programação</p>
             </div>
         </div>
 
@@ -405,6 +428,7 @@
         <div class="bimestre-section">
             <div class="bimestre-header">
                 <h2>📚 3º BIMESTRE</h2>
+                <p style="color: #667eea; font-size: 1.1em; margin-top: 10px;">Fundamentos de Programação e Python Básico</p>
                 
                 <!-- Calendário do 3º Bimestre -->
                 <div class="calendar-info">
@@ -426,30 +450,153 @@
             </div>
             
             <div class="chapters-grid">
-                <!-- Capítulo 1 - Sistemas Operacionais -->
-                <a href="sistemas_operacionais_presentation.html" class="chapter-card bimestre3">
+                <!-- Capítulo 1 - Introdução à Programação -->
+                <div class="chapter-card bimestre3">
                     <div class="chapter-number">1</div>
-                    <h2 class="chapter-title">🖥️ Sistemas Operacionais</h2>
+                    <h2 class="chapter-title">🧠 Introdução à Programação e Algoritmos</h2>
                     <p class="chapter-description">
-                        Compreenda o software que gerencia seu computador: Windows, Linux e macOS. 
-                        Aprenda sobre interface, gerenciamento de arquivos e configurações básicas.
+                        Descubra o que é programação, aprenda lógica algoritmica e como resolver problemas 
+                        através de fluxogramas e pseudocódigo antes de partir para o código.
                     </p>
                     <div class="chapter-topics">
-                        <span class="topic-tag">Windows</span>
-                        <span class="topic-tag">Linux</span>
-                        <span class="topic-tag">macOS</span>
-                        <span class="topic-tag">Interface Gráfica</span>
-                        <span class="topic-tag">Gerenciamento de Arquivos</span>
+                        <span class="topic-tag">O que é Programação</span>
+                        <span class="topic-tag">Algoritmos</span>
+                        <span class="topic-tag">Lógica de Programação</span>
+                        <span class="topic-tag">Fluxogramas</span>
+                        <span class="topic-tag">Pseudocódigo</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🧠</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 2 - Primeiros Passos com Python -->
+                <div class="chapter-card bimestre3">
+                    <div class="chapter-number">2</div>
+                    <h2 class="chapter-title">🐍 Primeiros Passos com Python</h2>
+                    <p class="chapter-description">
+                        Aprenda a usar o Python Shell para testar códigos e criar seus primeiros programas. 
+                        Descubra operações matemáticas, a função print e como Python é case-sensitive.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Python Shell</span>
+                        <span class="topic-tag">Função print()</span>
+                        <span class="topic-tag">Operações Matemáticas</span>
+                        <span class="topic-tag">Case-Sensitive</span>
+                        <span class="topic-tag">Primeiro Programa</span>
+                        <span class="topic-tag">Função help()</span>
                     </div>
                     <div class="chapter-status">
                         <span class="status-badge status-available">✅ Disponível</span>
-                        <span class="chapter-icon">🖥️</span>
+                        <span class="chapter-icon">🐍</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- Espaço para futuros capítulos -->
-                <div class="coming-soon-message">
-                    <p>📝 Mais capítulos serão adicionados em breve...</p>
+                <!-- Capítulo 3 - Variáveis e Tipos de Dados -->
+                <div class="chapter-card bimestre3">
+                    <div class="chapter-number">3</div>
+                    <h2 class="chapter-title">📦 Variáveis e Tipos de Dados</h2>
+                    <p class="chapter-description">
+                        Aprenda a guardar informações em variáveis e trabalhe com diferentes tipos: 
+                        números inteiros, decimais, textos e valores verdadeiro/falso.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Variáveis</span>
+                        <span class="topic-tag">int (inteiros)</span>
+                        <span class="topic-tag">float (decimais)</span>
+                        <span class="topic-tag">string (texto)</span>
+                        <span class="topic-tag">bool (verdadeiro/falso)</span>
+                        <span class="topic-tag">input() e conversões</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">📦</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 4 - Operadores e Expressões -->
+                <div class="chapter-card bimestre3">
+                    <div class="chapter-number">4</div>
+                    <h2 class="chapter-title">⚡ Operadores e Expressões</h2>
+                    <p class="chapter-description">
+                        Domine os operadores aritméticos, de comparação e lógicos. Aprenda sobre 
+                        precedência de operadores e como criar expressões complexas.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Operadores Aritméticos</span>
+                        <span class="topic-tag">Operadores de Comparação</span>
+                        <span class="topic-tag">Operadores Lógicos</span>
+                        <span class="topic-tag">Precedência</span>
+                        <span class="topic-tag">Expressões Complexas</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">⚡</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 5 - Strings e Manipulação de Texto -->
+                <div class="chapter-card bimestre3">
+                    <div class="chapter-number">5</div>
+                    <h2 class="chapter-title">📝 Strings e Manipulação de Texto</h2>
+                    <p class="chapter-description">
+                        Explore o mundo dos textos em Python: concatenação, métodos úteis, 
+                        fatiamento de strings e formatação avançada de mensagens.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Concatenação</span>
+                        <span class="topic-tag">Métodos de String</span>
+                        <span class="topic-tag">Fatiamento</span>
+                        <span class="topic-tag">Formatação</span>
+                        <span class="topic-tag">f-strings</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">📝</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 6 - Estruturas Condicionais -->
+                <div class="chapter-card bimestre3">
+                    <div class="chapter-number">6</div>
+                    <h2 class="chapter-title">🤔 Estruturas Condicionais</h2>
+                    <p class="chapter-description">
+                        Faça seu programa tomar decisões! Aprenda if, elif, else e como criar 
+                        condições aninhadas para programas mais inteligentes.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">if, elif, else</span>
+                        <span class="topic-tag">Condições Aninhadas</span>
+                        <span class="topic-tag">Operador Ternário</span>
+                        <span class="topic-tag">Tomada de Decisões</span>
+                        <span class="topic-tag">Fluxo de Controle</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🤔</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 7 - Estruturas de Repetição Parte I -->
+                <div class="chapter-card bimestre3">
+                    <div class="chapter-number">7</div>
+                    <h2 class="chapter-title">🔄 Estruturas de Repetição - Parte I</h2>
+                    <p class="chapter-description">
+                        Automatize tarefas repetitivas com loops! Domine while, for, range() 
+                        e aprenda a controlar loops com break e continue.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Loop while</span>
+                        <span class="topic-tag">Loop for</span>
+                        <span class="topic-tag">range()</span>
+                        <span class="topic-tag">break e continue</span>
+                        <span class="topic-tag">Loops Infinitos</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🔄</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -458,6 +605,7 @@
         <div class="bimestre-section">
             <div class="bimestre-header">
                 <h2>📚 4º BIMESTRE</h2>
+                <p style="color: #ff758c; font-size: 1.1em; margin-top: 10px;">Estruturas Avançadas e Projetos</p>
                 
                 <!-- Calendário do 4º Bimestre -->
                 <div class="calendar-info">
@@ -479,38 +627,160 @@
             </div>
             
             <div class="chapters-grid">
-                <!-- Capítulo 1 - Aplicativos de Escritório -->
-                <a href="aplicativos_escritorio_presentation.html" class="chapter-card bimestre4">
-                    <div class="chapter-number">1</div>
-                    <h2 class="chapter-title">📄 Aplicativos de Escritório</h2>
+                <!-- Capítulo 8 - Listas e Tuplas -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">8</div>
+                    <h2 class="chapter-title">📋 Listas e Tuplas</h2>
                     <p class="chapter-description">
-                        Domine as ferramentas essenciais para produtividade: Microsoft Office e Google Workspace. 
-                        Word, Excel, PowerPoint e suas alternativas gratuitas.
+                        Organize múltiplos dados em estruturas! Aprenda listas (mutáveis), tuplas (imutáveis), 
+                        indexação, métodos úteis e introdução à list comprehension.
                     </p>
                     <div class="chapter-topics">
-                        <span class="topic-tag">Microsoft Word</span>
-                        <span class="topic-tag">Excel</span>
-                        <span class="topic-tag">PowerPoint</span>
-                        <span class="topic-tag">Google Docs</span>
-                        <span class="topic-tag">LibreOffice</span>
+                        <span class="topic-tag">Criação de Listas</span>
+                        <span class="topic-tag">Indexação</span>
+                        <span class="topic-tag">Métodos de Lista</span>
+                        <span class="topic-tag">Tuplas</span>
+                        <span class="topic-tag">List Comprehension</span>
                     </div>
                     <div class="chapter-status">
-                        <span class="status-badge status-available">✅ Disponível</span>
-                        <span class="chapter-icon">📄</span>
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">📋</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- Espaço para futuros capítulos -->
-                <div class="coming-soon-message">
-                    <p>📝 Mais capítulos serão adicionados em breve...</p>
+                <!-- Capítulo 9 - Estruturas de Repetição Parte II -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">9</div>
+                    <h2 class="chapter-title">🔄 Estruturas de Repetição - Parte II</h2>
+                    <p class="chapter-description">
+                        Técnicas avançadas de loops: loops aninhados para estruturas complexas, 
+                        enumerate() para índices e zip() para múltiplas sequências.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Loops Aninhados</span>
+                        <span class="topic-tag">enumerate()</span>
+                        <span class="topic-tag">zip()</span>
+                        <span class="topic-tag">Iteração Avançada</span>
+                        <span class="topic-tag">Padrões de Loop</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🔄</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 10 - Dicionários e Conjuntos -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">10</div>
+                    <h2 class="chapter-title">🗂️ Dicionários e Conjuntos</h2>
+                    <p class="chapter-description">
+                        Estruturas de dados avançadas: dicionários (chave-valor) para dados relacionados 
+                        e conjuntos (sets) para elementos únicos e operações matemáticas.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Dicionários (dict)</span>
+                        <span class="topic-tag">Chaves e Valores</span>
+                        <span class="topic-tag">Conjuntos (set)</span>
+                        <span class="topic-tag">Métodos e Operações</span>
+                        <span class="topic-tag">Iteração em Estruturas</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🗂️</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 11 - Funções Fundamentos -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">11</div>
+                    <h2 class="chapter-title">⚙️ Funções - Fundamentos</h2>
+                    <p class="chapter-description">
+                        Organize e reutilize código com funções! Aprenda def, parâmetros, return, 
+                        escopo de variáveis e como documentar suas funções adequadamente.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">def (definição)</span>
+                        <span class="topic-tag">Parâmetros</span>
+                        <span class="topic-tag">return</span>
+                        <span class="topic-tag">Escopo de Variáveis</span>
+                        <span class="topic-tag">Documentação</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">⚙️</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 12 - Funções Avançadas -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">12</div>
+                    <h2 class="chapter-title">🚀 Funções Avançadas</h2>
+                    <p class="chapter-description">
+                        Técnicas avançadas: argumentos padrão, *args para múltiplos argumentos, 
+                        **kwargs para argumentos nomeados e funções lambda para código conciso.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Argumentos Padrão</span>
+                        <span class="topic-tag">*args</span>
+                        <span class="topic-tag">**kwargs</span>
+                        <span class="topic-tag">Funções lambda</span>
+                        <span class="topic-tag">Flexibilidade</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🚀</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 13 - Tratamento de Erros -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">13</div>
+                    <h2 class="chapter-title">🛡️ Tratamento de Erros</h2>
+                    <p class="chapter-description">
+                        Torne seus programas robustos! Aprenda try/except para capturar erros, 
+                        finally para limpeza e diferentes tipos de exceções em Python.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">try e except</span>
+                        <span class="topic-tag">finally</span>
+                        <span class="topic-tag">Tipos de Exceções</span>
+                        <span class="topic-tag">Depuração</span>
+                        <span class="topic-tag">Programas Robustos</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">🛡️</span>
+                    </div>
+                </div>
+
+                <!-- Capítulo 14 - Arquivos e Projeto Final -->
+                <div class="chapter-card bimestre4">
+                    <div class="chapter-number">14</div>
+                    <h2 class="chapter-title">📁 Arquivos e Projeto Final</h2>
+                    <p class="chapter-description">
+                        Persistência de dados com arquivos! Aprenda open(), read(), write(), trabalhe com 
+                        CSV e JSON, e desenvolva um projeto integrador aplicando todos os conceitos.
+                    </p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">Manipulação de Arquivos</span>
+                        <span class="topic-tag">CSV e JSON</span>
+                        <span class="topic-tag">Projeto Integrador</span>
+                        <span class="topic-tag">Boas Práticas</span>
+                        <span class="topic-tag">Portfolio</span>
+                    </div>
+                    <div class="chapter-status">
+                        <span class="status-badge status-coming-soon">🚧 Em Breve</span>
+                        <span class="chapter-icon">📁</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <h3>💡 Sobre esta Apostila</h3>
-            <p>Material didático interativo desenvolvido para facilitar o aprendizado em Informática Aplicada</p>
-            <p>Conteúdo sendo desenvolvido gradualmente - Acompanhe as atualizações!</p>
+            <h3>🎓 Sobre o Curso</h3>
+            <p>Curso completo de Iniciação à Programação com Python</p>
+            <p>Do zero absoluto até projetos práticos - Prepare-se para o mundo da programação!</p>
+            <p style="margin-top: 20px; color: #4a5568;"><strong>🚀 Em breve: Todas as aulas serão disponibilizadas</strong></p>
         </div>
     </div>
 
@@ -543,9 +813,9 @@
                 }
             }, 100);
 
-            // Animação da barra de progresso (início da disciplina)
+            // Animação da barra de progresso (curso estruturado)
             setTimeout(() => {
-                document.querySelector('.progress-fill').style.width = '10%';
+                document.querySelector('.progress-fill').style.width = '100%';
             }, 1000);
 
             // Animação suave para os calendários
@@ -563,19 +833,37 @@
                 }, index * 200);
             });
 
-            // Efeito especial para as mensagens "Coming Soon"
-            const comingSoonMessages = document.querySelectorAll('.coming-soon-message');
-            comingSoonMessages.forEach(message => {
-                message.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                    this.style.borderColor = '#f7971e';
-                });
+            // Animação dos cards por bimestre
+            setTimeout(() => {
+                const bimestre3Cards = document.querySelectorAll('.bimestre3');
+                const bimestre4Cards = document.querySelectorAll('.bimestre4');
                 
-                message.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                    this.style.borderColor = '#667eea';
+                bimestre3Cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        card.style.transition = 'all 0.5s ease';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, index * 100);
                 });
-            });
+
+                bimestre4Cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        card.style.transition = 'all 0.5s ease';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, (index * 100) + 1000);
+                });
+            }, 500);
         });
     </script>
 </body>
