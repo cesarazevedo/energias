@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiros Passos com Python</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #3776ab 0%, #4b8bbe 100%);
+            color: #333;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1000px;
+            width: 90%;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+            min-height: 500px;
+            overflow-y: auto;
+            max-height: 85vh;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #3776ab;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #3776ab;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #2d5aa0;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .concept-box {
+            background: #e6f3ff;
+            border: 2px solid #3776ab;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #3776ab;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #3776ab;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #ff7675;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            border-left: 4px solid #ffd43b;
+            text-align: left;
+        }
+
+        .code-output {
+            background: #1a202c;
+            color: #4ade80;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd43b 0%, #ffd43b 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            animation: highlight 1s ease-in-out 0.5s forwards;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        @keyframes highlight {
+            to { background-size: 100% 100%; }
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: #3776ab;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #2d5aa0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            background: rgba(255,255,255,0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #3776ab;
+        }
+
+        .big-icon {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .math-operations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .math-item {
+            background: #f1f3f4;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3776ab;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3776ab;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0f9ff 100%);
+            border: 2px solid #60a5fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .exercise-box h3 {
+            color: #1d4ed8;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .shell-prompt {
+            color: #ffd43b;
+            font-weight: bold;
+        }
+
+        .interactive-demo {
+            background: #f1f3f4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #3776ab;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .slide { padding: 20px; }
+            .comparison-table { grid-template-columns: 1fr; }
+            .math-operations { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Título -->
+        <div class="slide active">
+            <div class="big-icon">🐍💻</div>
+            <h1>Primeiros Passos com Python</h1>
+            <h3>Hora de colocar a mão na massa!</h3>
+            <div class="concept-box">
+                <p><strong>O que vamos aprender hoje?</strong></p>
+                <p>🐍 Por que Python é especial</p>
+                <p>🖥️ Como usar o Python Shell</p>
+                <p>🧮 Operações matemáticas básicas</p>
+                <p>📢 A função print() - voz do programa</p>
+                <p>🔤 Python é case-sensitive</p>
+                <p>❓ Função help() - seu manual</p>
+                <p>📝 Criar seu primeiro programa!</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Por que Python? -->
+        <div class="slide">
+            <h2>🐍 Por que Python?</h2>
+            <p>Python é como aprender a dirigir num carro automático - <span class="highlight">simples de usar</span>, mas te leva longe!</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h3>😰 Outras Linguagens</h3>
+                    <p>• Sintaxe complicada</p>
+                    <p>• Muitas regras</p>
+                    <p>• Difícil para iniciantes</p>
+                    <p>• Código longo</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h3>😊 Python</h3>
+                    <p>• Sintaxe simples</p>
+                    <p>• Parecido com inglês</p>
+                    <p>• Feito para iniciantes</p>
+                    <p>• Código conciso</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>🎯 Onde Python é usado?</strong></p>
+                <p>• YouTube, Instagram, Netflix</p>
+                <p>• NASA, Google, Dropbox</p>
+                <p>• Inteligência Artificial</p>
+                <p>• Análise de dados, jogos, sites...</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Python Shell - Sua Calculadora Inteligente -->
+        <div class="slide">
+            <h2>🖥️ Python Shell - Sua Calculadora Inteligente</h2>
+            <p>O Shell é onde você <span class="highlight">conversa diretamente</span> com Python!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 O que são os três símbolos >>>?</strong></p>
+                <p>É o Python dizendo: "Oi! Estou pronto para suas ordens!" 😄</p>
+                <div class="code-block">
+<span class="shell-prompt">>>> </span># Aqui é onde você digita
+<span class="shell-prompt">>>> </span># Python está esperando seu comando!
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>📚 Analogia:</strong></p>
+                <p>É como ter um <strong>gênio da lâmpada matemático</strong>!</p>
+                <p>Você faz uma pergunta → Ele responde na hora → Você faz outra pergunta...</p>
+                <p>Perfeito para <strong>testar</strong> e <strong>aprender</strong>! ✨</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Operações Matemáticas -->
+        <div class="slide">
+            <h2>🧮 Python - O Gênio da Matemática</h2>
+            <p>Python faz contas melhor que qualquer calculadora!</p>
+            
+            <div class="math-operations">
+                <div class="math-item">
+                    <h3>➕ Soma</h3>
+                    <div class="code-block">>>> 2 + 3</div>
+                    <div class="code-output">5</div>
+                </div>
+                
+                <div class="math-item">
+                    <h3>➖ Subtração</h3>
+                    <div class="code-block">>>> 5 - 2</div>
+                    <div class="code-output">3</div>
+                </div>
+                
+                <div class="math-item">
+                    <h3>✖️ Multiplicação</h3>
+                    <div class="code-block">>>> 3 * 4</div>
+                    <div class="code-output">12</div>
+                </div>
+                
+                <div class="math-item">
+                    <h3>➗ Divisão</h3>
+                    <div class="code-block">>>> 10 / 2</div>
+                    <div class="code-output">5.0</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>🚀 Operação especial - Potência:</strong></p>
+                <div class="code-block">>>> 3 ** 2  # 3 ao quadrado</div>
+                <div class="code-output">9</div>
+                <p>Use <strong>**</strong> para elevar à potência!</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: A Função print() - Voz do Programa -->
+        <div class="slide">
+            <h2>📢 A Função print() - A Voz do Seu Programa</h2>
+            <p>A função <span class="highlight">print()</span> é como dar voz ao seu programa!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 Para que serve o print()?</strong></p>
+                <p>• Mostrar mensagens na tela</p>
+                <p>• Comunicar com o usuário</p>
+                <p>• Exibir resultados</p>
+                <p>• Dar feedback ao usuário</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💬 Exemplo básico:</strong></p>
+                <div class="code-block">>>> print('Olá Mundo!')</div>
+                <div class="code-output">Olá Mundo!</div>
+                <p><strong>Lembre-se:</strong> Textos sempre entre aspas! ' ' ou " "</p>
+            </div>
+
+            <div class="interactive-demo">
+                <p><strong>🏧 Analogia do Caixa Eletrônico:</strong></p>
+                <p>Quando você vê "Seu saldo é R$ 500,00" na tela, foi o <code>print()</code> que mostrou isso!</p>
+                <p>O sistema buscou seu saldo na base de dados e usou print() para exibir na tela! 💰</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Python é Case-Sensitive -->
+        <div class="slide">
+            <h2>🔤 Atenção: Python é "Chatinho" com Maiúsculas!</h2>
+            <p>Python faz diferença entre <span class="highlight">letras maiúsculas e minúsculas</span>!</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h3>✅ Correto</h3>
+                    <div class="code-block">>>> print('Olá!')</div>
+                    <div class="code-output">Olá!</div>
+                </div>
+                
+                <div class="comparison-item">
+                    <h3>❌ Incorreto</h3>
+                    <div class="code-block">>>> Print('Olá!')</div>
+                    <div class="code-output">NameError: name 'Print' is not defined</div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Regra de Ouro:</strong></p>
+                <p>É como escrever seu nome - se é "João", não pode ser "joÃo"!</p>
+                <p><strong>print</strong> ≠ <strong>Print</strong> ≠ <strong>PRINT</strong></p>
+                <p>Sempre use <code>print</code> com letras minúsculas!</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💡 Dica:</strong> Isso será MUITO importante quando criarmos variáveis!</p>
+                <p>Se você criar <code>nome</code>, não pode usar <code>Nome</code> depois!</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Função help() - Seu Manual Pessoal -->
+        <div class="slide">
+            <h2>❓ Função help() - Seu Manual Pessoal</h2>
+            <p>Esqueceu como algo funciona? O <span class="highlight">help()</span> te ajuda!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 Como usar:</strong></p>
+                <div class="code-block">>>> help(print)</div>
+                <div class="code-output">Help on built-in function print...
+Mostra informações sobre a função print</div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>📚 Quando usar help():</strong></p>
+                <p>• Esqueceu como uma função funciona</p>
+                <p>• Quer descobrir novos recursos</p>
+                <p>• Precisa de exemplos rápidos</p>
+                <p>• Está explorando Python</p>
+            </div>
+
+            <div class="interactive-demo">
+                <p><strong>🤝 Seus melhores amigos:</strong></p>
+                <p>1. <strong>help()</strong> - Manual do Python</p>
+                <p>2. <strong>Google</strong> - "Python 3 função print"</p>
+                <p>3. <strong>Stack Overflow</strong> - Comunidade de programadores</p>
+                <p>4. <strong>Documentação Python</strong> - python.org</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Shell vs Programa -->
+        <div class="slide">
+            <h2>🤔 Shell vs Programa - Qual a Diferença?</h2>
+            <p>Entenda quando usar cada um!</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h3>🔄 Python Shell</h3>
+                    <p>• Um comando por vez</p>
+                    <p>• Resposta imediata</p>
+                    <p>• Para testar e aprender</p>
+                    <p>• Como uma conversa</p>
+                    <p>• Não salva o que você fez</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h3>📝 Programa Python</h3>
+                    <p>• Vários comandos juntos</p>
+                    <p>• Executa tudo de uma vez</p>
+                    <p>• Para criar soluções</p>
+                    <p>• Como um roteiro</p>
+                    <p>• Salva em arquivo .py</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>📚 Analogia:</strong></p>
+                <p><strong>Shell:</strong> Como fazer contas de cabeça - rápido mas não fica salvo</p>
+                <p><strong>Programa:</strong> Como escrever uma receita de bolo - fica salvo para usar sempre!</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Criando Seu Primeiro Programa -->
+        <div class="slide">
+            <h2>📝 Criando Seu Primeiro Programa!</h2>
+            <p>Vamos criar um programa de verdade!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 Nosso primeiro programa:</strong></p>
+                <div class="code-block">print('Meu primeiro programa em Python!')
+print('O resultado de 2 + 3 é:', 2 + 3)
+print('Fim do programa')</div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>📤 Saída do programa:</strong></p>
+                <div class="code-output">Meu primeiro programa em Python!
+O resultado de 2 + 3 é: 5
+Fim do programa</div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Importante:</strong></p>
+                <p>No Shell: <code>2 + 3</code> mostra o resultado automaticamente</p>
+                <p>No Programa: Precisa usar <code>print(2 + 3)</code> para mostrar!</p>
+            </div>
+
+            <div class="interactive-demo">
+                <p><strong>💾 Como salvar:</strong></p>
+                <p>1. Criar novo arquivo</p>
+                <p>2. Digitar o código</p>
+                <p>3. Salvar como <strong>meu_programa.py</strong></p>
+                <p>4. Pressionar <strong>F5</strong> para executar!</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Exercício Prático -->
+        <div class="slide">
+            <h2>💪 Exercício para Fixar!</h2>
+            <p>Vamos praticar o que aprendemos!</p>
+            
+            <div class="exercise-box">
+                <h3>🎯 Desafio: Criando uma "Calculadora Falante"</h3>
+                <p><strong>Sua missão:</strong> Criar um programa que faz contas e "conversa" sobre elas!</p>
+                
+                <p><strong>📝 O que seu programa deve fazer:</strong></p>
+                <p>1. Cumprimentar o usuário</p>
+                <p>2. Fazer pelo menos 4 operações diferentes (+, -, *, /)</p>
+                <p>3. Explicar cada resultado com print()</p>
+                <p>4. Despedir-se do usuário</p>
+                
+                <p><strong>💡 Exemplo de saída:</strong></p>
+                <div class="code-output">Olá! Sou sua calculadora falante!
+A soma de 10 + 5 é: 15
+A subtração de 20 - 8 é: 12
+A multiplicação de 6 * 7 é: 42
+A divisão de 100 / 4 é: 25.0
+Obrigado por usar minha calculadora! 😊</div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>🎪 Desafio extra:</strong> Use textos divertidos nas mensagens!</p>
+                <p><strong>🏆 Dica:</strong> Lembre-se: textos entre aspas, vírgula para separar no print()!</p>
+            </div>
+
+            <div class="concept-box">
+                <p><strong>🚀 Próxima aula:</strong> Vamos aprender sobre variáveis - como dar nomes às coisas!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+        <span class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
+        </span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Próximo →</button>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = index + 1;
+            
+            // Atualizar botões de navegação
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlideIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentSlideIndex = newIndex;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        // Navegação com teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Inicializar
+        showSlide(0);
+
+        // Adicionar efeitos de hover nos blocos de código
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            block.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Efeito especial no exercício
+        document.querySelector('.exercise-box').addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 10px 30px rgba(96, 165, 250, 0.3)';
+            this.style.transform = 'scale(1.02)';
+            this.style.transition = 'all 0.3s ease';
+        });
+
+        document.querySelector('.exercise-box').addEventListener('mouseleave', function() {
+            this.style.boxShadow = 'none';
+            this.style.transform = 'scale(1)';
+        });
+
+        // Animação especial para operações matemáticas
+        document.querySelectorAll('.math-item').forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100);
+            }, index * 150);
+        });
+    </script>
+</body>
+</html>
