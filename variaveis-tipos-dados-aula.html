@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variáveis e Tipos de Dados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1000px;
+            width: 90%;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+            min-height: 500px;
+            overflow-y: auto;
+            max-height: 85vh;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #5a67d8;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .concept-box {
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #ff7675;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            text-align: left;
+        }
+
+        .code-output {
+            background: #1a202c;
+            color: #4ade80;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a7f3d0 0%, #a7f3d0 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            animation: highlight 1s ease-in-out 0.5s forwards;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        @keyframes highlight {
+            to { background-size: 100% 100%; }
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            background: rgba(255,255,255,0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .big-icon {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .type-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            text-align: center;
+        }
+
+        .type-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0f9ff 100%);
+            border: 2px solid #60a5fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .exercise-box h3 {
+            color: #1d4ed8;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .variable-demo {
+            background: #f1f3f4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #667eea;
+        }
+
+        .analogy-box {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border: 2px solid #a855f7;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #a855f7;
+        }
+
+        .conversion-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .conversion-item {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .slide { padding: 20px; }
+            .comparison-table { grid-template-columns: 1fr; }
+            .types-grid { grid-template-columns: 1fr; }
+            .conversion-examples { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Título -->
+        <div class="slide active">
+            <div class="big-icon">📦💾</div>
+            <h1>Variáveis e Tipos de Dados</h1>
+            <h3>Aprendendo a guardar informações!</h3>
+            <div class="concept-box">
+                <p><strong>O que vamos aprender hoje?</strong></p>
+                <p>📦 O que são variáveis</p>
+                <p>🔢 Números: int e float</p>
+                <p>📝 Textos: string</p>
+                <p>✅ Verdadeiro/Falso: bool</p>
+                <p>⌨️ Receber dados do usuário: input()</p>
+                <p>🔄 Converter entre tipos</p>
+                <p>🎯 Projeto prático!</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: O que são Variáveis? -->
+        <div class="slide">
+            <h2>📦 O que são Variáveis?</h2>
+            <p>Variáveis são como <span class="highlight">caixinhas com etiquetas</span> para guardar informações!</p>
+            
+            <div class="analogy-box">
+                <h3>🏠 Analogia: Armário de Casa</h3>
+                <p><strong>Gaveta "meias":</strong> Só guarda meias</p>
+                <p><strong>Gaveta "camisetas":</strong> Só guarda camisetas</p>
+                <p><strong>Variável "nome":</strong> Só guarda nomes</p>
+                <p><strong>Variável "idade":</strong> Só guarda idades</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💡 Como criar uma variável:</strong></p>
+                <div class="code-block">nome = "João"
+idade = 25
+altura = 1.75
+estudante = True</div>
+                <p>Nome da variável <strong>=</strong> valor que você quer guardar</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Regras importantes:</strong></p>
+                <p>• Nome de variável SEM espaços: <code>meu_nome</code> ✅ <code>meu nome</code> ❌</p>
+                <p>• Não pode começar com número: <code>idade1</code> ✅ <code>1idade</code> ❌</p>
+                <p>• Python é case-sensitive: <code>nome</code> ≠ <code>Nome</code></p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tipo int - Números Inteiros -->
+        <div class="slide">
+            <h2>🔢 Tipo int - Números Inteiros</h2>
+            <p><span class="highlight">Números sem vírgula</span> - como contar objetos!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 O que são números inteiros?</strong></p>
+                <p>São números "redondos" - sem casas decimais</p>
+                <p>Exemplos: -100, -5, 0, 1, 10, 1000, 999999</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💻 Exemplos práticos:</strong></p>
+                <div class="code-block">idade = 20
+filhos = 2
+pontos_jogo = 1500
+temperatura = -5
+
+print("Idade:", idade)
+print("Tipo:", type(idade))</div>
+                <div class="code-output">Idade: 20
+Tipo: &lt;class 'int'&gt;</div>
+            </div>
+
+            <div class="variable-demo">
+                <p><strong>🧮 Onde usar int:</strong></p>
+                <p>• Idade de pessoas</p>
+                <p>• Quantidade de itens</p>
+                <p>• Pontuação em jogos</p>
+                <p>• Número de likes, seguidores...</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Tipo float - Números Decimais -->
+        <div class="slide">
+            <h2>🎯 Tipo float - Números Decimais</h2>
+            <p><span class="highlight">Números com vírgula</span> - para medidas precisas!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 O que são números decimais?</strong></p>
+                <p>São números que têm casas decimais (depois do ponto)</p>
+                <p>Em Python usamos <strong>ponto</strong> ao invés de vírgula!</p>
+                <p>Exemplos: 3.14, 1.75, 0.5, -2.5</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💻 Exemplos práticos:</strong></p>
+                <div class="code-block">altura = 1.75
+peso = 70.5
+preco = 19.99
+nota = 8.7
+
+print("Altura:", altura, "metros")
+print("Tipo:", type(altura))</div>
+                <div class="code-output">Altura: 1.75 metros
+Tipo: &lt;class 'float'&gt;</div>
+            </div>
+
+            <div class="variable-demo">
+                <p><strong>📏 Onde usar float:</strong></p>
+                <p>• Altura, peso, medidas</p>
+                <p>• Preços (R$ 19,99)</p>
+                <p>• Notas (8,5)</p>
+                <p>• Coordenadas GPS...</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Tipo string - Textos -->
+        <div class="slide">
+            <h2>📝 Tipo string - Textos</h2>
+            <p><span class="highlight">Qualquer texto</span> - sempre entre aspas!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 O que são strings?</strong></p>
+                <p>São textos: letras, números, símbolos, frases, palavras...</p>
+                <p><strong>SEMPRE</strong> entre aspas simples ' ' ou duplas " "</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💻 Exemplos práticos:</strong></p>
+                <div class="code-block">nome = "Maria"
+sobrenome = 'Silva'
+email = "maria@email.com"
+senha = "123abc"
+frase = "Estou aprendendo Python!"
+
+print("Nome completo:", nome, sobrenome)
+print("Tipo:", type(nome))</div>
+                <div class="code-output">Nome completo: Maria Silva
+Tipo: &lt;class 'str'&gt;</div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Atenção:</strong></p>
+                <p><code>"123"</code> é string (texto) ≠ <code>123</code> que é int (número)</p>
+                <p><code>"19.99"</code> é string ≠ <code>19.99</code> que é float</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Tipo bool - Verdadeiro/Falso -->
+        <div class="slide">
+            <h2>✅ Tipo bool - Verdadeiro/Falso</h2>
+            <p><span class="highlight">Apenas duas opções</span> - True ou False!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 O que são booleanos?</strong></p>
+                <p>São valores lógicos: apenas <strong>True</strong> (verdadeiro) ou <strong>False</strong> (falso)</p>
+                <p>Como um interruptor: ligado ou desligado! 💡</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💻 Exemplos práticos:</strong></p>
+                <div class="code-block">estudante = True
+formado = False
+maior_idade = True
+tem_carro = False
+
+print("É estudante?", estudante)
+print("Tipo:", type(estudante))</div>
+                <div class="code-output">É estudante? True
+Tipo: &lt;class 'bool'&gt;</div>
+            </div>
+
+            <div class="variable-demo">
+                <p><strong>🤔 Onde usar bool:</strong></p>
+                <p>• Login feito com sucesso? True/False</p>
+                <p>• Usuário é premium? True/False</p>
+                <p>• Jogo pausado? True/False</p>
+                <p>• Wifi conectado? True/False</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumo dos Tipos -->
+        <div class="slide">
+            <h2>📊 Resumo dos Tipos de Dados</h2>
+            <p>Cada tipo para uma finalidade específica!</p>
+            
+            <div class="types-grid">
+                <div class="type-item">
+                    <div class="type-icon">🔢</div>
+                    <h3>int</h3>
+                    <p><strong>Números inteiros</strong></p>
+                    <div class="code-block">idade = 25</div>
+                </div>
+                
+                <div class="type-item">
+                    <div class="type-icon">🎯</div>
+                    <h3>float</h3>
+                    <p><strong>Números decimais</strong></p>
+                    <div class="code-block">altura = 1.75</div>
+                </div>
+                
+                <div class="type-item">
+                    <div class="type-icon">📝</div>
+                    <h3>string</h3>
+                    <p><strong>Textos</strong></p>
+                    <div class="code-block">nome = "Ana"</div>
+                </div>
+                
+                <div class="type-item">
+                    <div class="type-icon">✅</div>
+                    <h3>bool</h3>
+                    <p><strong>Verdadeiro/Falso</strong></p>
+                    <div class="code-block">ativo = True</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>🔍 Como descobrir o tipo:</strong></p>
+                <div class="code-block">print(type(25))        # &lt;class 'int'&gt;
+print(type(3.14))      # &lt;class 'float'&gt;
+print(type("Python"))  # &lt;class 'str'&gt;
+print(type(True))      # &lt;class 'bool'&gt;</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Função input() - Recebendo Dados -->
+        <div class="slide">
+            <h2>⌨️ Função input() - Conversando com o Usuário</h2>
+            <p>Agora seu programa pode <span class="highlight">conversar de verdade</span>!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 O que faz o input()?</strong></p>
+                <p>• Para o programa e espera o usuário digitar</p>
+                <p>• Mostra uma mensagem (pergunta)</p>
+                <p>• Guarda o que o usuário digitou</p>
+                <p>• <strong>SEMPRE</strong> retorna string (texto)!</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💻 Exemplo básico:</strong></p>
+                <div class="code-block">nome = input("Qual seu nome? ")
+print("Olá,", nome, "!")
+
+idade = input("Qual sua idade? ")
+print("Você tem", idade, "anos")</div>
+                <div class="code-output">Qual seu nome? João
+Olá, João !
+Qual sua idade? 25
+Você tem 25 anos</div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Importante:</strong></p>
+                <p>O <code>input()</code> sempre retorna string, mesmo que o usuário digite um número!</p>
+                <p><code>idade = input("Idade: ")</code> → idade será "25" (string), não 25 (int)</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Conversões entre Tipos -->
+        <div class="slide">
+            <h2>🔄 Conversões entre Tipos</h2>
+            <p>Transformando um tipo em outro quando necessário!</p>
+            
+            <div class="concept-box">
+                <p><strong>🎯 Funções de conversão:</strong></p>
+                <p><code>int()</code> - converte para número inteiro</p>
+                <p><code>float()</code> - converte para número decimal</p>
+                <p><code>str()</code> - converte para texto</p>
+                <p><code>bool()</code> - converte para True/False</p>
+            </div>
+
+            <div class="conversion-examples">
+                <div class="conversion-item">
+                    <h3>String → int</h3>
+                    <div class="code-block">idade_texto = "25"
+idade_numero = int(idade_texto)
+print(idade_numero + 5)</div>
+                    <div class="code-output">30</div>
+                </div>
+                
+                <div class="conversion-item">
+                    <h3>String → float</h3>
+                    <div class="code-block">altura_texto = "1.75"
+altura_numero = float(altura_texto)
+print(altura_numero * 2)</div>
+                    <div class="code-output">3.5</div>
+                </div>
+                
+                <div class="conversion-item">
+                    <h3>Número → string</h3>
+                    <div class="code-block">pontos = 1500
+pontos_texto = str(pontos)
+print("Você fez " + pontos_texto + " pontos")</div>
+                    <div class="code-output">Você fez 1500 pontos</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>💡 Exemplo prático com input:</strong></p>
+                <div class="code-block">idade_str = input("Sua idade: ")  # Recebe string
+idade_int = int(idade_str)         # Converte para int
+nascimento = 2024 - idade_int      # Agora pode fazer conta!
+print("Você nasceu em", nascimento)</div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Exercício Prático -->
+        <div class="slide">
+            <h2>💪 Exercício para Fixar!</h2>
+            <p>Vamos criar um programa que usa todos os tipos!</p>
+            
+            <div class="exercise-box">
+                <h3>🎯 Desafio: "Perfil do Usuário Completo"</h3>
+                <p><strong>Sua missão:</strong> Criar um programa que coleta e processa informações do usuário!</p>
+                
+                <p><strong>📝 O que seu programa deve fazer:</strong></p>
+                <p>1. Perguntar o nome (string)</p>
+                <p>2. Perguntar a idade (converter para int)</p>
+                <p>3. Perguntar a altura em metros (converter para float)</p>
+                <p>4. Perguntar se é estudante: "sim" ou "não" (converter para bool)</p>
+                <p>5. Calcular o ano de nascimento</p>
+                <p>6. Calcular a altura em centímetros</p>
+                <p>7. Mostrar um resumo completo!</p>
+                
+                <p><strong>💡 Exemplo de saída:</strong></p>
+                <div class="code-output">=== PERFIL COMPLETO ===
+Nome: Ana Silva
+Idade: 20 anos
+Nascimento: 2004
+Altura: 1.65m (165cm)
+Estudante: True
+========================</div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>🎪 Desafios extras:</strong></p>
+                <p>• Use type() para mostrar o tipo de cada variável</p>
+                <p>• Trate "sim"/"SIM"/"s" como True para estudante</p>
+                <p>• Adicione mais informações criativas!</p>
+            </div>
+
+            <div class="concept-box">
+                <p><strong>🚀 Próxima aula:</strong> Operadores e Expressões - fazendo contas e comparações!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+        <span class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
+        </span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Próximo →</button>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = index + 1;
+            
+            // Atualizar botões de navegação
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlideIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentSlideIndex = newIndex;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        // Navegação com teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Inicializar
+        showSlide(0);
+
+        // Adicionar efeitos de hover nos blocos de código
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            block.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Efeito especial no exercício
+        document.querySelector('.exercise-box').addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 10px 30px rgba(96, 165, 250, 0.3)';
+            this.style.transform = 'scale(1.02)';
+            this.style.transition = 'all 0.3s ease';
+        });
+
+        document.querySelector('.exercise-box').addEventListener('mouseleave', function() {
+            this.style.boxShadow = 'none';
+            this.style.transform = 'scale(1)';
+        });
+
+        // Animação para os tipos de dados
+        document.querySelectorAll('.type-item').forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100);
+            }, index * 200);
+        });
+
+        // Animação para exemplos de conversão
+        document.querySelectorAll('.conversion-item').forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.9)';
+                item.style.transition = 'all 0.4s ease';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1)';
+                }, 100);
+            }, index * 150);
+        });
+    </script>
+</body>
+</html>
